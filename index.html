@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html ng-app>
+<html data-ng-app lang="en">
 <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-    <script src="minefield-controller.js"></script>
+    <meta charset="utf-8">
+    <title>Minesweeper</title>
+    <link rel="icon" type="image/png" href="assets/img/mine.png">
+    <link rel="stylesheet" href="assets/css/standard.css">
 </head>
-<body ng-controller="MinesweeperController">
-    <table border="1">
-        <tr ng-repeat="row in minefield.rows">
-            <td ng-repeat="square in row.squares">{{square.isRevealed}}
+<body data-ng-controller="MinesweeperController">
+    <table class="minefield">
+        <tr data-ng-repeat="row in minefield.rows">
+            <td data-ng-repeat="square in row.squares" data-ng-click="square.isCovered = false">
+                <img data-ng-if="square.isCovered" src="assets/img/covered.png" alt="Covered square" title="Covered">
+                <img data-ng-if="!square.isCovered" src="assets/img/empty.png" alt="Empty square" title="Empty">
             </td>
         </tr>
     </table>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="minefield-controller.js"></script>
 </body>
 </html>

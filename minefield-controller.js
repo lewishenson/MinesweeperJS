@@ -11,7 +11,7 @@ function MinesweeperController($scope) {
 
             for (var j = 0; j < 9; j++) {
                 var square = {
-                    isRevealed: false
+                    isCovered: true
                 };
                 row.squares.push(square);
             }
