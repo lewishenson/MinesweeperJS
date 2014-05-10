@@ -11,12 +11,14 @@
         <tr data-ng-repeat="row in minefield.rows">
             <td data-ng-repeat="square in row.squares" data-ng-click="square.isCovered = false">
                 <img data-ng-if="square.isCovered" src="assets/img/covered.png" alt="Covered square" title="Covered">
-                <img data-ng-if="!square.isCovered" src="assets/img/empty.png" alt="Empty square" title="Empty">
+                <img data-ng-if="!square.isCovered && square.content === 'empty'" src="assets/img/empty.png" alt="Empty square" title="Empty">
+				<img data-ng-if="!square.isCovered && square.content === 'mine'" src="assets/img/mine.png" alt="Mine" title="Mine">
             </td>
         </tr>
     </table>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="minefield-controller.js"></script>
 </body>
 </html>
