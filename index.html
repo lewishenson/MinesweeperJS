@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Minesweeper</title>
-    <link rel="icon" type="image/png" href="assets/img/mine.png">
+    <link rel="icon" type="image/png" href="assets/img/flag-mine.png">
     <link rel="stylesheet" href="assets/css/standard.css">
 </head>
 <body data-ng-controller="MinesweeperController">
@@ -13,6 +13,14 @@
                 <img data-ng-if="square.isCovered" src="assets/img/covered.png" alt="Covered square" title="Covered">
                 <img data-ng-if="!square.isCovered && square.content === 'empty'" src="assets/img/empty.png" alt="Empty square" title="Empty">
                 <img data-ng-if="!square.isCovered && square.content === 'mine'" src="assets/img/mine.png" alt="Mine" title="Mine">
+                <img data-ng-if="!square.isCovered && square.content === 1" src="assets/img/number-1.png" alt="1 mine nearby" title="1 mine nearby">
+                <img data-ng-if="!square.isCovered && square.content === 2" src="assets/img/number-2.png" alt="2 mines nearby" title="2 mines nearby">
+                <img data-ng-if="!square.isCovered && square.content === 3" src="assets/img/number-3.png" alt="3 mines nearby" title="3 mines nearby">
+                <img data-ng-if="!square.isCovered && square.content === 4" src="assets/img/number-4.png" alt="4 mines nearby" title="4 mines nearby">
+                <img data-ng-if="!square.isCovered && square.content === 5" src="assets/img/number-5.png" alt="5 mines nearby" title="5 mines nearby">
+                <img data-ng-if="!square.isCovered && square.content === 6" src="assets/img/number-6.png" alt="6 mines nearby" title="6 mines nearby">
+                <img data-ng-if="!square.isCovered && square.content === 7" src="assets/img/number-7.png" alt="7 mines nearby" title="7 mines nearby">
+                <img data-ng-if="!square.isCovered && square.content === 8" src="assets/img/number-8.png" alt="8 mines nearby" title="8 mines nearby">
             </td>
         </tr>
     </table>
