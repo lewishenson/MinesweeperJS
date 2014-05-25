@@ -77,11 +77,72 @@ angular.module('MinesweeperJS')
                _numberOfMines = numberOfMines;
            };
 
+           var calculateNumber = function (square, rowIndex, columnIndex) {
+               var mineCount = 0;
+
+               var checkForNeighbouringMine = function (neighbourRowIndex, neighbourColumnIndex) {
+                   var neighbouringSquare = getSquare(neighbourRowIndex, neighbourColumnIndex);
+                   if (neighbouringSquare.content === "mine") {
+                       mineCount++;
+                   }
+               }
+
+               if (rowIndex > 0) {
+                   if (columnIndex > 0) {
+                       checkForNeighbouringMine(rowIndex - 1, columnIndex - 1);
+                   }
+
+                   checkForNeighbouringMine(rowIndex - 1, columnIndex);
+
+                   if (columnIndex < (_numberOfColumns - 1)) {
+                       checkForNeighbouringMine(rowIndex - 1, columnIndex + 1);
+                   }
+               }
+
+               if (columnIndex > 0) {
+                   checkForNeighbouringMine(rowIndex, columnIndex - 1);
+               }
+
+               if (columnIndex < (_numberOfColumns - 1)) {
+                   checkForNeighbouringMine(rowIndex, columnIndex + 1);
+               }
+
+               if (rowIndex < (_numberOfRows - 1)) {
+                   if (columnIndex > 0) {
+                       checkForNeighbouringMine(rowIndex + 1, columnIndex - 1);
+                   }
+
+                   checkForNeighbouringMine(rowIndex + 1, columnIndex);
+
+                   if (columnIndex < (_numberOfColumns - 1)) {
+                       checkForNeighbouringMine(rowIndex + 1, columnIndex + 1);
+                   }
+               }
+
+               return mineCount;
+           };
+
+           var calculateAllNumbers = function () {
+               for (var rowIndex = 0; rowIndex < _numberOfRows; rowIndex++) {
+                   for (var columnIndex = 0; columnIndex < _numberOfColumns; columnIndex++) {
+                       var square = getSquare(rowIndex, columnIndex);
+
+                       if (square.content !== 'mine') {
+                           var number = calculateNumber(square, rowIndex, columnIndex);
+                           if (number) {
+                               square.content = number;
+                           }
+                       }
+                   };
+               };
+           };
+
            return {
                rows: _rows,
                initialise: function (numberOfRows, numberOfColumns, numberOfMines) {
                    createSquares(numberOfRows, numberOfColumns);
                    placeMines(numberOfMines);
+                   calculateAllNumbers();
                }
            };
        });
