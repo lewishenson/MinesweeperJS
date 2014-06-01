@@ -2,14 +2,16 @@
 <html data-ng-app="MinesweeperJS" lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Minesweeper</title>
+    <title>MinesweeperJS</title>
     <link rel="icon" type="image/png" href="assets/img/flag-mine.png">
     <link rel="stylesheet" href="assets/css/standard.css">
 </head>
 <body data-ng-controller="MinesweeperController">
+    <h1>MinesweeperJS</h1>
+
     <table class="minefield">
-        <tr data-ng-repeat="row in minefield.rows">
-            <td data-ng-repeat="square in row.squares" data-ng-click="square.isCovered = false">
+        <tr data-ng-repeat="row in game.minefield.rows">
+            <td data-ng-repeat="square in row.squares" data-ng-click="square.uncover()">
                 <img data-ng-if="square.isCovered" src="assets/img/covered.png" alt="Covered square" title="Covered">
                 <img data-ng-if="!square.isCovered && square.content === 'empty'" src="assets/img/empty.png" alt="Empty square" title="Empty">
                 <img data-ng-if="!square.isCovered && square.content === 'mine'" src="assets/img/mine.png" alt="Mine" title="Mine">
@@ -25,10 +27,13 @@
         </tr>
     </table>
 
+    <h3 data-ng-if="game.minefield.isWinner()">You won!</h3>
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/game.js"></script>
     <script src="js/minefield.js"></script>
 </body>
 </html>

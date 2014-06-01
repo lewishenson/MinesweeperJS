@@ -5,7 +5,8 @@ angular.module('MinesweeperJS')
            var _rows = [],
                _numberOfRows = 0,
                _numberOfColumns = 0,
-               _numberOfMines = 0;
+               _numberOfMines = 0,
+               _isWinner = false;
 
            var clear = function () {
                while (_rows.length > 0) {
@@ -15,6 +16,21 @@ angular.module('MinesweeperJS')
                _numberOfRows = 0;
                _numberOfColumns = 0;
                _numberOfMines = 0;
+           };
+
+           var checkIfWinner = function () {
+               var hasWon = true;
+
+               _.forEach(_rows, function (row) {
+                   _.forEach(row.squares, function (square) {
+                       if (square.isCovered && square.content !== 'mine') {
+                           hasWon = false;
+                           return;
+                       }
+                   });
+               });
+
+               _isWinner = hasWon;
            };
 
            var createSquares = function (numberOfRows, numberOfColumns) {
@@ -28,7 +44,11 @@ angular.module('MinesweeperJS')
                    for (var j = 0; j < numberOfColumns; j++) {
                        var square = {
                            isCovered: true,
-                           content: 'empty'
+                           content: 'empty',
+                           uncover: function () {
+                               this.isCovered = false
+                               checkIfWinner();
+                           }
                        };
                        row.squares.push(square);
                    }
@@ -143,6 +163,9 @@ angular.module('MinesweeperJS')
                    createSquares(numberOfRows, numberOfColumns);
                    placeMines(numberOfMines);
                    calculateAllNumbers();
+               },
+               isWinner: function () {
+                   return _isWinner;
                }
            };
        });
