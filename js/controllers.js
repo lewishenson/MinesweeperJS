@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('MinesweeperJS', [])
-       .controller('MinesweeperController', function ($scope, Minefield) {
-           Minefield.initialise(9, 9, 10);
+       .controller('MinesweeperController', function ($scope, Game) {
+           Game.initialiseMinefield(9, 9, 10);
 
-           $scope.minefield = Minefield;
+           $scope.game = Game;
        });
