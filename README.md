@@ -14,3 +14,4 @@ Want to play the game? Head over to the [demo page](http://lewishenson.github.io
 4. [Part IV](http://www.simplygoodcode.com/2014/05/angularjs-game-programming-making-minesweeper-part-iv/) - adding mines
 5. [Part V](http://www.simplygoodcode.com/2014/05/angularjs-game-programming-making-minesweeper-part-v/) - adding numbers
 6. [Part VI](http://www.simplygoodcode.com/2014/05/angularjs-game-programming-making-minesweeper-part-vi/) - detecting winner
+7. [Part VII](http://www.simplygoodcode.com/2016/05/angularjs-game-programming-making-minesweeper-part-vii/) - detecting loser
