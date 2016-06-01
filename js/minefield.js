@@ -6,7 +6,8 @@ angular.module('MinesweeperJS')
                _numberOfRows = 0,
                _numberOfColumns = 0,
                _numberOfMines = 0,
-               _isWinner = false;
+               _isWinner = false,
+               _isLoser = false;
 
            var clear = function () {
                while (_rows.length > 0) {
@@ -42,14 +43,22 @@ angular.module('MinesweeperJS')
                    };
 
                    for (var j = 0; j < numberOfColumns; j++) {
-                       var square = {
-                           isCovered: true,
-                           content: 'empty',
-                           uncover: function () {
-                               this.isCovered = false
-                               checkIfWinner();
-                           }
-                       };
+                        var square = {
+                            isCovered: true,
+                            content: 'empty',
+                            uncover: function () {
+                                this.isCovered = false
+
+                                if (!_isLoser) {
+                                    _isLoser = (this.content === 'mine');
+
+                                    if (!_isLoser) {
+                                        checkIfWinner();
+                                    }
+                                }
+                            }
+                        };
+
                        row.squares.push(square);
                    }
 
@@ -166,6 +175,9 @@ angular.module('MinesweeperJS')
                },
                isWinner: function () {
                    return _isWinner;
+               },
+               isLoser: function () {
+                   return _isLoser;
                }
            };
        });
